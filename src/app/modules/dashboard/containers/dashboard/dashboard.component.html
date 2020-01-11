@@ -1,0 +1,13 @@
+<ng-container *ngIf="model$ | async as model">
+    <list-component
+            *ngIf="model.state === 'READY'"
+            [items]="model.items">
+    </list-component>
+
+    <ng-container *ngIf="model.state === 'PENDING'">PENDING</ng-container>
+
+    <ng-container *ngIf="model.state === 'ERROR'">
+        <span>ERROR</span>
+        <button (click)="refresh()">REFRESH</button>
+    </ng-container>
+</ng-container>

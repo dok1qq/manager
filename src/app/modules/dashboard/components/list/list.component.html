@@ -1,0 +1,6 @@
+<ng-container *ngIf="items">
+    <item-component
+            *ngFor="let item of items; trackBy: itemId"
+            [item]="item">
+    </item-component>
+</ng-container>

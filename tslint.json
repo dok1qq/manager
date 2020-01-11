@@ -1,5 +1,6 @@
 {
   "extends": "tslint:recommended",
+  "indent": [true, "tabs", 4],
   "rules": {
     "array-type": false,
     "arrow-parens": false,
@@ -16,7 +17,7 @@
       "camelCase"
     ],
     "component-selector": [
-      true,
+      false,
       "element",
       "app",
       "kebab-case"
