@@ -3,14 +3,14 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Model } from '../models/model';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { State } from '../models/state';
-import { UsersService } from './users.service';
+import { JsonPlaceholderService } from './json-placeholder.service';
 
 @Injectable()
 export class DashboardService {
 
     refresh$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-    constructor(private users: UsersService) {}
+    constructor(private jsonPlaceholderService: JsonPlaceholderService) {}
 
     refresh(): void {
         this.refresh$.next(true);
@@ -23,7 +23,7 @@ export class DashboardService {
     }
 
     private initModel(): Observable<Model> {
-        return this.users.getJsonPlaceholderUsers().pipe(
+        return this.jsonPlaceholderService.getUsers().pipe(
             map((items: any[]) => ({ state: State.READY, items })),
             catchError((err: any) => {
                 console.error(err);
