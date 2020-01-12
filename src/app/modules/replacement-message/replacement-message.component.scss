@@ -1,0 +1,53 @@
+$base-gutter: 8px;
+$colors: (
+	'-is-success': green,
+	'-is-info': blue,
+	'-is-attention': coral,
+	'-is-warning': red,
+);
+
+:host {
+	display: inline-flex;
+	line-height: 24px;
+	font-size: $base-gutter * 2;
+	text-align: center;
+	color: white;
+
+	&.-absolute {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 5;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.replacement-message {
+		&__icon svg {
+			display: inline-flex;
+			margin-bottom: 10px;
+			height: $base-gutter * 6;
+			width: $base-gutter * 6;
+		}
+	}
+}
+
+.replacement-message {
+	&__title {
+		font-weight: 600;
+		font-size: 15px;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+
+		::ng-deep a {
+			color: #ffc600;
+			cursor: pointer;
+			text-decoration: underline;
+		}
+	}
+}

@@ -34,6 +34,8 @@ export class UsersService {
 	}
 
 	getJsonPlaceholderUsers(): Observable<User[]> {
-		return this.http.get<User[]>(`${this.JSON_PLACEHOLDER_API}/users`);
+		return this.http.get<User[]>(`${this.JSON_PLACEHOLDER_API}/users`).pipe(
+			delay(1000)
+		);
 	}
 }

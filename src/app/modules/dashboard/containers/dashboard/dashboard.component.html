@@ -1,13 +1,17 @@
 <ng-container *ngIf="model$ | async as model">
-    <list-component
-            *ngIf="model.state === 'READY'"
-            [items]="model.items">
-    </list-component>
+
+	<ng-container *ngIf="model.state === 'READY'">
+		<filter-component></filter-component>
+		<list-component [items]="model.items"></list-component>
+	</ng-container>
 
     <ng-container *ngIf="model.state === 'PENDING'">PENDING</ng-container>
 
     <ng-container *ngIf="model.state === 'ERROR'">
-        <span>ERROR</span>
-        <button (click)="refresh()">REFRESH</button>
+		<replacement-message>
+			Internal Server Error
+			<a (click)="refresh()">Refresh</a>
+		</replacement-message>
     </ng-container>
+
 </ng-container>
