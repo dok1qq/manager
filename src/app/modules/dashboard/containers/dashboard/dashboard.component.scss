@@ -1,8 +1,14 @@
 :host {
-  display: flex;
-  position: relative;
-  flex-direction: column;
+	display: flex;
+	position: relative;
+	flex-direction: column;
 
-  flex: 1;
-  height: 100%;
+	flex: 1;
+	height: 100%;
+	overflow: auto;
+	padding: 16px;
+
+	& > * + * {
+		margin-top: 16px;
+	}
 }
