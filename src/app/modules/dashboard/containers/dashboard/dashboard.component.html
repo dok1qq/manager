@@ -1,11 +1,10 @@
 <ng-container *ngIf="model$ | async as model">
 
 	<ng-container *ngIf="model.state === 'READY'">
-		<filter-component></filter-component>
 		<list-component [items]="model.items"></list-component>
 	</ng-container>
 
-    <ng-container *ngIf="model.state === 'PENDING'">PENDING</ng-container>
+	<preloader-component *ngIf="model.state === 'PENDING'">Loading...</preloader-component>
 
     <ng-container *ngIf="model.state === 'ERROR'">
 		<replacement-message>
