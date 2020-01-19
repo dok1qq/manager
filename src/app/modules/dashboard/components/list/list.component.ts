@@ -12,7 +12,7 @@ export class ListComponent {
     @Input()
     items: User[];
 
-    itemId(index: number, item: any): number {
+    itemId(index: number, item: User): number {
         return item.id;
     }
 }
