@@ -1,5 +1,7 @@
 <ng-container *ngIf="model$ | async as model">
 
+	<pre *ngIf="cd(model)"></pre>
+
 	<list-component
 		*ngIf="model.state === 'READY'"
 		[items]="model.items">

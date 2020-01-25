@@ -19,6 +19,11 @@ export class DashboardComponent {
         this.model$ = this.service.getModel();
     }
 
+	cd(model: Model): boolean {
+    	console.log('change detection: ', model);
+    	return false;
+	}
+
     refresh(): void {
         this.service.refresh();
     }
