@@ -1,21 +1,20 @@
 :host {
-  display: flex;
-  align-items: center;
-  background-color: #fff;
-  padding: 16px;
-  border-radius: 2px;
+	display: flex;
+	align-items: center;
+	background-color: #fff;
+	padding: 16px;
+	border-radius: 2px;
 
-  & > * + * {
-    margin-left: 8px;
-  }
+	& > * + * {
+		margin-left: 8px;
+	}
 
-  .box {
-    width: 48px;
-    height: 48px;
-    background-color: #bbb;
-  }
-
-  .info {
-    font-size: 16px;
-  }
+	.box {
+		width: 48px;
+		height: 48px;
+		background-color: #bbb;
+	}
+	.info { font-size: 16px; }
+	.name { font-weight: bold; }
+	.email { font-size: small; }
 }

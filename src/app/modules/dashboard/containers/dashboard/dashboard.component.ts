@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Model } from '../../models/model';
 import { DashboardService } from '../../services/dashboard.service';
 import { JsonPlaceholderService } from '../../services/json-placeholder.service';
+import { FilterManager } from '../../models/filter-manager';
 
 @Component({
     selector: 'dashboard-component',
@@ -27,4 +28,8 @@ export class DashboardComponent {
     refresh(): void {
         this.service.refresh();
     }
+
+	filterChange(value: FilterManager): void {
+    	this.service.filter(value);
+	}
 }

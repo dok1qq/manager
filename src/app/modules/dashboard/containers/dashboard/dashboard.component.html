@@ -2,10 +2,10 @@
 
 	<pre *ngIf="cd(model)"></pre>
 
-	<list-component
-		*ngIf="model.state === 'READY'"
-		[items]="model.items">
-	</list-component>
+	<ng-container *ngIf="model.state === 'READY'">
+		<filter-component (filerChange)="filterChange($event)"></filter-component>
+		<list-component [items]="model.items"></list-component>
+	</ng-container>
 
 	<preloader-component *ngIf="model.state === 'PENDING'">Loading...</preloader-component>
 
