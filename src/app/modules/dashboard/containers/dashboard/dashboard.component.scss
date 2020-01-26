@@ -6,9 +6,9 @@
 	flex: 1;
 	height: 100%;
 	overflow: auto;
-	padding: 16px;
+	padding: 64px 128px;
 
 	& > * + * {
-		margin-top: 16px;
+		margin-top: 48px;
 	}
 }

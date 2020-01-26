@@ -1,0 +1,18 @@
+:host {
+	display: block;
+
+	input {
+		border: none;
+		background-color: #192322;
+		width: 300px;
+		height: 32px;
+		padding: 8px 16px;
+		font-size: 16px;
+		color: white;
+
+		&:focus {
+			outline: none;
+			background-color: #1c2726;
+		}
+	}
+}

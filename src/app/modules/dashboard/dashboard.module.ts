@@ -6,10 +6,12 @@ import { ItemComponent } from './components/item/item.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { ReplacementMessageModule } from '../replacement-message/replacement-message.module';
 import { PreloaderModule } from '../preloader/preloader.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         CommonModule,
+	    ReactiveFormsModule,
 
 	    // Component Modules
 	    PreloaderModule,
