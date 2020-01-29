@@ -16,6 +16,10 @@ export const routes: Routes = [
 				loadChildren: 'src/app/modules/routing/lazy/dashboard-lazy.module#DashboardLazyModule',
 			},
 			/*{
+				path: 'detail/:id',
+				loadChildren
+			},*/
+			/*{
 				path: 'create',
 				loadChildren: '',
 			},

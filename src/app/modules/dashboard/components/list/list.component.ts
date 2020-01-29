@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Item } from '../../models/item';
 
 @Component({
@@ -11,6 +11,9 @@ export class ListComponent {
 
     @Input()
     items: Item[];
+
+    @Output()
+    openDetail: EventEmitter<Item> = new EventEmitter<Item>();
 
     itemId(index: number, item: Item): string {
         return item.id;

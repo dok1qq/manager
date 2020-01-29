@@ -4,6 +4,7 @@ import { Model } from '../../models/model';
 import { DashboardService } from '../../services/dashboard.service';
 import { FilterManager } from '../../models/filter-manager';
 import { FirebaseService } from '../../services/firebase.service';
+import { Item } from '../../models/item';
 
 @Component({
     selector: 'dashboard-component',
@@ -31,5 +32,9 @@ export class DashboardComponent {
 
 	filterChange(value: FilterManager): void {
     	this.service.filter(value);
+	}
+
+	detail(item: Item): void {
+    	this.service.detail(item);
 	}
 }

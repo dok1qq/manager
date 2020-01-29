@@ -8,6 +8,8 @@ import { ReplacementMessageModule } from '../replacement-message/replacement-mes
 import { PreloaderModule } from '../preloader/preloader.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { DetailModule } from '../detail/detail.module';
+import { DialogInfoModule } from '../dialog-info/dialog-info.module';
 
 const routes: Routes = [{
 	path: '',
@@ -23,6 +25,10 @@ const routes: Routes = [{
 	    // Component Modules
 	    PreloaderModule,
 	    ReplacementMessageModule,
+
+	    // Modal
+	    DialogInfoModule,
+	    DetailModule,
     ],
     providers: [],
     declarations: [

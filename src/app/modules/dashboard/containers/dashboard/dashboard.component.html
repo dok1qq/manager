@@ -4,7 +4,7 @@
 
 	<div class="wrapper" *ngIf="model.state === 'READY'">
 		<filter-component (filerChange)="filterChange($event)"></filter-component>
-		<list-component [items]="model.items"></list-component>
+		<list-component [items]="model.items" (openDetail)="detail($event)"></list-component>
 	</div>
 
 	<preloader-component *ngIf="model.state === 'PENDING'">Loading...</preloader-component>
