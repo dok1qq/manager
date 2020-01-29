@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Model } from '../../models/model';
 import { DashboardService } from '../../services/dashboard.service';
-import { JsonPlaceholderService } from '../../services/json-placeholder.service';
 import { FilterManager } from '../../models/filter-manager';
+import { FirebaseService } from '../../services/firebase.service';
 
 @Component({
     selector: 'dashboard-component',
-    providers: [DashboardService, JsonPlaceholderService],
+    providers: [DashboardService, FirebaseService],
     templateUrl: 'dashboard.component.html',
     styleUrls: ['dashboard.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,

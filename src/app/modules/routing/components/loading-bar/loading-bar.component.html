@@ -1,0 +1,10 @@
+<ng-container>
+    <div id="loading-bar-spinner" *ngIf="includeSpinner" [style.color]="color">
+        <div [style.width]="diameter" [style.height]="diameter" class="spinner-icon"></div>
+    </div>
+    <div id="loading-bar" *ngIf="includeBar" [style.color]="color">
+        <div class="bar" [style.background]="color" [style.height]="height">
+            <div class="peg" [style.height]="height"></div>
+        </div>
+    </div>
+</ng-container>

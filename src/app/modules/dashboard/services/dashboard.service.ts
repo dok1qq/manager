@@ -3,9 +3,9 @@ import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
 import { Model } from '../models/model';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { State } from '../models/state';
-import { JsonPlaceholderService } from './json-placeholder.service';
 import { User } from '../models/user';
 import { FilterManager } from '../models/filter-manager';
+import { FirebaseService } from './firebase.service';
 
 @Injectable()
 export class DashboardService {
@@ -14,7 +14,7 @@ export class DashboardService {
 	private readonly filter$: BehaviorSubject<FilterManager> = new BehaviorSubject(new FilterManager(''));
 
 
-	constructor(private jsonPlaceholderService: JsonPlaceholderService) {}
+	constructor(private firebaseService: FirebaseService) {}
 
     refresh(): void {
         this.refresh$.next(true);
@@ -33,7 +33,7 @@ export class DashboardService {
     private initModel(): Observable<Model> {
         return combineLatest([
         	this.filter$.asObservable(),
-	        this.jsonPlaceholderService.getUsers(),
+	        this.firebaseService.getUsers(),
         ]).pipe(
             map(([manager, items]: [FilterManager, User[]]) => manager.filter(items)),
 	        map((items: User[]) => ({ state: State.READY, items })),

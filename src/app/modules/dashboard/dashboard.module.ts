@@ -7,11 +7,18 @@ import { FilterComponent } from './components/filter/filter.component';
 import { ReplacementMessageModule } from '../replacement-message/replacement-message.module';
 import { PreloaderModule } from '../preloader/preloader.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [{
+	path: '',
+	component: DashboardComponent,
+}];
 
 @NgModule({
     imports: [
         CommonModule,
 	    ReactiveFormsModule,
+	    RouterModule.forChild(routes),
 
 	    // Component Modules
 	    PreloaderModule,

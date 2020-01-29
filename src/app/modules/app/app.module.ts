@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { RoutingModule } from '../routing/routing.module';
+
 import { AppComponent } from './app.component';
-import { DashboardModule } from '../dashboard/dashboard.module';
 
 @NgModule({
     imports: [
@@ -12,13 +13,10 @@ import { DashboardModule } from '../dashboard/dashboard.module';
         BrowserAnimationsModule,
         HttpClientModule,
 
-        // Custom Modules
-        DashboardModule,
+	    // Routing
+	    RoutingModule,
     ],
-    declarations: [
-        AppComponent,
-    ],
-    providers: [],
+    declarations: [AppComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
