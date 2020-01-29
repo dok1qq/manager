@@ -1,4 +1,4 @@
-export interface User {
+export interface IUser {
     id: number;
     name: string;
     username: string;
@@ -20,4 +20,21 @@ export interface User {
         catchPhrase: string;
         bs: string;
     };
+}
+
+export class User {
+
+	constructor(private key: string, private user: IUser) {}
+
+	get id(): string {
+		return this.key;
+	}
+
+	get name(): string {
+		return this.user.name;
+	}
+
+	get email(): string {
+		return this.user.email;
+	}
 }

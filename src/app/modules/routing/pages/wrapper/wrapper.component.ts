@@ -14,6 +14,7 @@ import { filter, map, tap } from 'rxjs/operators';
 @Component({
 	selector: 'wrapper-component',
 	templateUrl: 'wrapper.component.html',
+	styleUrls: ['wrapper.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WrapperComponent {
