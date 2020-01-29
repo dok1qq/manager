@@ -3,9 +3,9 @@ import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
 import { Model } from '../models/model';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { State } from '../models/state';
-import { User } from '../models/user';
 import { FilterManager } from '../models/filter-manager';
 import { FirebaseService } from './firebase.service';
+import { Item } from '../models/item';
 
 @Injectable()
 export class DashboardService {
@@ -33,10 +33,10 @@ export class DashboardService {
     private initModel(): Observable<Model> {
         return combineLatest([
         	this.filter$.asObservable(),
-	        this.firebaseService.getUsers(),
+	        this.firebaseService.getItems(),
         ]).pipe(
-            map(([manager, items]: [FilterManager, User[]]) => manager.filter(items)),
-	        map((items: User[]) => ({ state: State.READY, items })),
+            map(([manager, items]: [FilterManager, Item[]]) => manager.filter(items)),
+	        map((items: Item[]) => ({ state: State.READY, items })),
             catchError((err: any) => {
                 console.error(err);
                 return of({ state: State.ERROR });

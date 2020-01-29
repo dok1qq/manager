@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { IUser, User } from '../models/user';
 import { environment } from '../../../../environments/environment';
 import { catchError, map, mapTo } from 'rxjs/operators';
+import { IItem, Item } from '../models/item';
 
-interface IGetUsersResponse  {
-	[id: string]: IUser;
+// TODO: should be in api
+interface IGetItemsResponse  {
+	[id: string]: IItem;
 }
 
 @Injectable()
@@ -16,12 +17,12 @@ export class FirebaseService {
 
 	constructor(private http: HttpClient) {}
 
-	getUsers(): Observable<User[]> {
+	getItems(): Observable<Item[]> {
 		const path: string = `${this.databaseURL}/users.json`;
-		return this.http.get<IGetUsersResponse>(path).pipe(
-			map((response: IGetUsersResponse) => {
+		return this.http.get<IGetItemsResponse>(path).pipe(
+			map((response: IGetItemsResponse) => {
 				return Object.keys(response).map((key: string) => {
-					return new User(key, response[key]);
+					return new Item(key, response[key]);
 				});
 			}),
 		);

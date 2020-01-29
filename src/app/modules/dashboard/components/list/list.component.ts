@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { User } from '../../models/user';
+import { Item } from '../../models/item';
 
 @Component({
     selector: 'list-component',
@@ -10,9 +10,9 @@ import { User } from '../../models/user';
 export class ListComponent {
 
     @Input()
-    items: User[];
+    items: Item[];
 
-    itemId(index: number, item: User): string {
+    itemId(index: number, item: Item): string {
         return item.id;
     }
 }

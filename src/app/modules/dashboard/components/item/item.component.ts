@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { User } from '../../models/user';
+import { Item } from '../../models/item';
 
 @Component({
     selector: 'item-component',
@@ -10,6 +10,6 @@ import { User } from '../../models/user';
 export class ItemComponent {
 
     @Input()
-    item: User;
+    item: Item;
 
 }

@@ -1,4 +1,4 @@
-import { User } from './user';
+import { Item } from './item';
 
 export class FilterManager {
 
@@ -8,19 +8,14 @@ export class FilterManager {
 		this.value = value.toLowerCase();
 	}
 
-	filter(items: User[]): User[] {
-		return items.filter((item: User) => {
-			return this.filterByName(item) || this.filterByEmail(item);
+	filter(items: Item[]): Item[] {
+		return items.filter((item: Item) => {
+			return this.filterByName(item);
 		});
 	}
 
-	private filterByName(item: User): boolean {
+	private filterByName(item: Item): boolean {
 		const itemName: string = item.name.toLowerCase();
 		return itemName.includes(this.value)
-	}
-
-	private filterByEmail(item: User): boolean {
-		const itemEmail: string = item.email.toLowerCase();
-		return itemEmail.includes(this.value)
 	}
 }

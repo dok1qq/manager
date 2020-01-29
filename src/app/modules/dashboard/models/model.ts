@@ -1,7 +1,7 @@
 import { State } from './state';
-import { User } from './user';
+import { Item } from './item';
 
 export interface Model {
-    items?: User[];
+    items?: Item[];
     state: State;
 }
