@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DetailComponent } from './containers/detail/detail.component';
 import { ReplacementMessageModule } from '../replacement-message/replacement-message.module';
 import { PreloaderModule } from '../preloader/preloader.module';
+import { ContentComponent } from './components/content/content.component';
 
 
 @NgModule({
@@ -16,6 +17,9 @@ import { PreloaderModule } from '../preloader/preloader.module';
 	declarations: [
 		// Containers
 		DetailComponent,
+
+		// Components
+		ContentComponent,
 	],
 	exports: [DetailComponent],
 	entryComponents: [DetailComponent],

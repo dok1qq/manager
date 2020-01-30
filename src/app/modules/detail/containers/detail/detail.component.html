@@ -3,10 +3,12 @@
 	<ng-container *ngIf="cd(model)"></ng-container>
 
 	<div *ngIf="model.state === 'READY'">
-		<pre>{{model.item | json}}</pre>
+		<content-component [item]="model.item"></content-component>
 	</div>
 
-	<preloader-component *ngIf="model.state === 'PENDING'">Loading...</preloader-component>
+	<preloader-component *ngIf="model.state === 'PENDING'">
+		<div style="color: black;">Loading...</div>
+	</preloader-component>
 
 	<replacement-message *ngIf="model.state === 'ERROR'">
 		Internal Server Error
