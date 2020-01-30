@@ -1,1 +1,15 @@
-<h1>info</h1>
+<ng-container *ngIf="model$ | async as model">
+
+	<ng-container *ngIf="cd(model)"></ng-container>
+
+	<div *ngIf="model.state === 'READY'">
+		<pre>{{model.item | json}}</pre>
+	</div>
+
+	<preloader-component *ngIf="model.state === 'PENDING'">Loading...</preloader-component>
+
+	<replacement-message *ngIf="model.state === 'ERROR'">
+		Internal Server Error
+		<a (click)="refresh()">Refresh</a>
+	</replacement-message>
+</ng-container>

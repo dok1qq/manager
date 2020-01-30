@@ -5,11 +5,6 @@ import { environment } from '../../../../environments/environment';
 import { map } from 'rxjs/operators';
 import { IItem, Item } from '../models/item';
 
-// TODO: should be in api
-interface IGetItemsResponse  {
-	[id: string]: IItem;
-}
-
 @Injectable()
 export class FirebaseService {
 
@@ -17,13 +12,11 @@ export class FirebaseService {
 
 	constructor(private http: HttpClient) {}
 
-	getItems(): Observable<Item[]> {
-		const path: string = `${this.databaseURL}/users.json`;
-		return this.http.get<IGetItemsResponse>(path).pipe(
-			map((response: IGetItemsResponse) => {
-				return Object.keys(response).map((key: string) => {
-					return new Item(key, response[key]);
-				});
+	getItem(id: string): Observable<Item> {
+		const path: string = `${this.databaseURL}/users/${id}.json`;
+		return this.http.get<IItem>(path).pipe(
+			map((response: IItem) => {
+				return new Item(id, response);
 			}),
 		);
 	}
