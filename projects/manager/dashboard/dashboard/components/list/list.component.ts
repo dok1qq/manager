@@ -16,6 +16,6 @@ export class ListComponent {
     openDetail: EventEmitter<Item> = new EventEmitter<Item>();
 
     itemId(index: number, item: Item): string {
-        return item.id;
+        return item.getId();
     }
 }

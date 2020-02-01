@@ -1,3 +1,3 @@
 export interface DialogInfoEditorData {
-	group: any;
+	ingredient: any;
 }

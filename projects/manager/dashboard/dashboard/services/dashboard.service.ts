@@ -32,7 +32,8 @@ export class DashboardService {
     detail(item: Item): void {
 		const ref: DialogInfoRef<DetailComponent, boolean> = this.dialogService
 			.openInfo(DetailComponent, {
-				data: { id: item.id }
+				panelClass: 'dialog-info',
+				data: { id: item.getId() }
 			});
 		ref.afterClosed().subscribe((result: boolean) => {
 			if (result) {

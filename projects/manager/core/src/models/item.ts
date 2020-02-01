@@ -2,17 +2,27 @@ import { IItem } from '@manager/api/firebase';
 
 export class Item {
 
+	private ingredients: any[];
+
 	constructor(private key: string, private item: IItem) {}
 
-	get id(): string {
+	getId(): string {
 		return this.key;
 	}
 
-	get name(): string {
+	getName(): string {
 		return this.item.name;
 	}
 
-	get description(): string {
+	getDescription(): string {
 		return this.item.description;
+	}
+
+	getIngredients(): any[] {
+		return this.ingredients;
+	}
+
+	initIngredients(): void {
+
 	}
 }

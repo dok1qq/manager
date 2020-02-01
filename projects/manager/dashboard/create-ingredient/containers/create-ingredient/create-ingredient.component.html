@@ -3,11 +3,7 @@
 	<ng-container *ngIf="cd(model)"></ng-container>
 
 	<div *ngIf="model.state === 'READY'">
-		<button mat-button (click)="close(false)">Close</button>
-		<content-component
-			[item]="model.item"
-			(openIngredient)="openIngredient($event)">
-		</content-component>
+		<h1>create-ingredient.component.</h1>
 	</div>
 
 	<preloader-component *ngIf="model.state === 'PENDING'">

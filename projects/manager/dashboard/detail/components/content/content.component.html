@@ -1,8 +1,13 @@
 <ng-container *ngIf="item">
-	<div class="image"></div>
-	<div class="info">
-		<div class="name">{{item.name}}</div>
-		<div class="description">{{item.description}}</div>
-		<div class="description">{{item | json}}</div>
+	<div class="wrapper">
+		<div class="image"></div>
+		<div class="info">
+			<div class="name">{{item.getName()}}</div>
+			<div class="description">{{item.getDescription()}}</div>
+			<div class="description">{{item | json}}</div>
+		</div>
+	</div>
+	<div class="actions">
+		<button mat-button (click)="openIngredient.emit()">openIngredient</button>
 	</div>
 </ng-container>

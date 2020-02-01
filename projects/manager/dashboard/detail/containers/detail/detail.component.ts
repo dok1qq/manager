@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { DetailService, Model } from '../../services/detail.service';
 import { Observable } from 'rxjs';
-import { DIALOG_INFO_DATA, DialogInfoData } from '@manager/components/dialog-info';
+import { DIALOG_INFO_DATA, DialogInfoData, DialogInfoRef } from '@manager/components/dialog-info';
 
 @Component({
 	selector: 'detail-component',
@@ -18,6 +18,7 @@ export class DetailComponent {
 	constructor(
 		@Inject(DIALOG_INFO_DATA)
 		private data: DialogInfoData,
+		private dialogRef: DialogInfoRef<DetailComponent>,
 		private service: DetailService,
 	) {
 		this.model$ = this.service.getModel(this.data.id);
@@ -29,7 +30,15 @@ export class DetailComponent {
 		return false;
 	}
 
+	close(result: boolean): void {
+		this.dialogRef.close(result);
+	}
+
 	refresh(): void {
 		this.service.refresh();
+	}
+
+	openIngredient(ingredient: any): void {
+		this.service.openIngredient(ingredient);
 	}
 }

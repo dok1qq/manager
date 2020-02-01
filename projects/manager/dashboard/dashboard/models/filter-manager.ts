@@ -15,7 +15,7 @@ export class FilterManager {
 	}
 
 	private filterByName(item: Item): boolean {
-		const itemName: string = item.name.toLowerCase();
+		const itemName: string = item.getName().toLowerCase();
 		return itemName.includes(this.value)
 	}
 }

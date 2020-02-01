@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Item } from '@manager/core';
 
 @Component({
@@ -11,4 +11,7 @@ export class ContentComponent {
 
 	@Input()
 	item: Item;
+
+	@Output()
+	openIngredient: EventEmitter<any> = new EventEmitter<any>();
 }

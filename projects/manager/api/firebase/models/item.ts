@@ -4,6 +4,4 @@ export interface IItem {
 	image: any;
 	category: any;
 	condition: any;
-	ingredients: any[];
-	recycler: any[];
 }
