@@ -19,11 +19,17 @@
 			"dom"
 		],
 		"paths": {
-			"@manager/api": [
-				"./dist/manager/api"
+			"@manager/core": [
+				"./dist/manager/core"
 			],
 			"@manager/api/*": [
 				"./dist/manager/api/*"
+			],
+			"@manager/components/*": [
+				"./dist/manager/components/*"
+			],
+			"@manager/dashboard/*": [
+				"./dist/manager/dashboard/*"
 			]
 		}
 	},
