@@ -1,0 +1,10 @@
+[
+	[
+		"manager/core",
+		"manager/api",
+		"manager/components"
+	],
+	[
+		"manager/dashboard"
+	]
+]

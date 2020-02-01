@@ -126,6 +126,146 @@
           }
         }
       }
+    },
+    "@manager/api": {
+      "projectType": "library",
+      "root": "projects/manager/api",
+      "sourceRoot": "projects/manager/api/src",
+      "prefix": "kpi",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/manager/api/tsconfig.lib.json",
+            "project": "projects/manager/api/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/manager/api/src/test.ts",
+            "tsConfig": "projects/manager/api/tsconfig.spec.json",
+            "karmaConfig": "projects/manager/api/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/manager/api/tsconfig.lib.json",
+              "projects/manager/api/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@manager/core": {
+      "projectType": "library",
+      "root": "projects/manager/core",
+      "sourceRoot": "projects/manager/core/src",
+      "prefix": "kpi",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/manager/core/tsconfig.lib.json",
+            "project": "projects/manager/core/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/manager/core/src/test.ts",
+            "tsConfig": "projects/manager/core/tsconfig.spec.json",
+            "karmaConfig": "projects/manager/core/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/manager/core/tsconfig.lib.json",
+              "projects/manager/core/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@manager/components": {
+      "projectType": "library",
+      "root": "projects/manager/components",
+      "sourceRoot": "projects/manager/components/src",
+      "prefix": "kpi",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/manager/components/tsconfig.lib.json",
+            "project": "projects/manager/components/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/manager/components/src/test.ts",
+            "tsConfig": "projects/manager/components/tsconfig.spec.json",
+            "karmaConfig": "projects/manager/components/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/manager/components/tsconfig.lib.json",
+              "projects/manager/components/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@manager/dashboard": {
+      "projectType": "library",
+      "root": "projects/manager/dashboard",
+      "sourceRoot": "projects/manager/dashboard/src",
+      "prefix": "kpi",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/manager/dashboard/tsconfig.lib.json",
+            "project": "projects/manager/dashboard/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/manager/dashboard/src/test.ts",
+            "tsConfig": "projects/manager/dashboard/tsconfig.spec.json",
+            "karmaConfig": "projects/manager/dashboard/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/manager/dashboard/tsconfig.lib.json",
+              "projects/manager/dashboard/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "manager"
