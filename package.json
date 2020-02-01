@@ -9,7 +9,6 @@
 		"start": "npm run ng -- serve",
 		"build": "npm run ng -- build --stats-json",
 		"build:projects": "node ./utils/build-projects.js",
-		"copy:projects": "cpx \"dist/manager/**\" node_modules/@manager",
 		"build:prod": "npm run ng -- build --prod --source-map --stats-json --build-optimizer false",
 		"build:libs:api": "npm run ng -- build @manager/api",
 		"build:libs:core": "npm run ng -- build @manager/core",
@@ -18,7 +17,8 @@
 		"watch:libs:api": "npm run ng -- build @manager/api --watch",
 		"watch:libs:core": "npm run ng -- build @manager/core --watch",
 		"watch:libs:components": "npm run ng -- build @manager/components --watch",
-		"watch:libs:dashboard": "npm run ng -- build @manager/dashboard --watch"
+		"watch:libs:dashboard": "npm run ng -- build @manager/dashboard --watch",
+		"bundle-report": "npm run build && webpack-bundle-analyzer dist/project/stats-es2015.json"
 	},
 	"private": true,
 	"dependencies": {
