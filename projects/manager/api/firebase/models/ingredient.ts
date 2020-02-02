@@ -1,4 +1,7 @@
+import { IItemBase } from './item-base';
+
 export interface IIngredient {
-	itemId: string;
+	id: string;
 	amount: string;
+	item: IItemBase;
 }

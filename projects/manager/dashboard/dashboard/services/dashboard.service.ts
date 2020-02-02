@@ -6,6 +6,7 @@ import { FirebaseApiService, IGetItemsResponse } from '@manager/api/firebase';
 import { DialogInfoRef, DialogInfoService } from '@manager/components/dialog-info';
 import { Item, ModelItems, State } from '@manager/core';
 import { DetailComponent } from '@manager/dashboard/detail';
+import { Router } from '@angular/router';
 
 export type Model = ModelItems<Item>;
 
@@ -19,6 +20,7 @@ export class DashboardService {
 	constructor(
 		private dialogService: DialogInfoService,
 		private firebase: FirebaseApiService,
+		private router: Router,
 	) {}
 
     refresh(): void {
@@ -41,6 +43,10 @@ export class DashboardService {
 			}
 		})
     }
+
+	createItem(): void {
+		this.router.navigate(['/create']);
+	}
 
     getModel(): Observable<Model> {
         return this.refresh$.pipe(

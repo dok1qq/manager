@@ -30,6 +30,9 @@
 			],
 			"@manager/dashboard/*": [
 				"./dist/manager/dashboard/*"
+			],
+			"@manager/editor": [
+				"./dist/manager/editor"
 			]
 		}
 	},

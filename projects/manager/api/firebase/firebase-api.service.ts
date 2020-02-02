@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
-import { IItem } from './models/item';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 import { IGetItemsResponse } from './models/get-items-response.interface';
+import { IItemBase } from './models/item-base';
+import { catchError, mapTo } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class FirebaseApiService {
@@ -13,13 +13,35 @@ export class FirebaseApiService {
 	constructor(private http: HttpClient) {
 	}
 
-	getItem(id: string): Observable<IItem> {
-		const path: string = `${this.databaseURL}/users/${id}.json`;
-		return this.http.get<IItem>(path).pipe();
+	getItem(id: string): Observable<IItemBase> {
+		const path: string = `${this.databaseURL}/items/${id}.json`;
+		return this.http.get<IItemBase>(path);
 	}
 
 	getItems(): Observable<IGetItemsResponse> {
-		const path: string = `${this.databaseURL}/users.json`;
-		return this.http.get<IGetItemsResponse>(path).pipe();
+		const path: string = `${this.databaseURL}/items.json`;
+		return this.http.get<IGetItemsResponse>(path);
+	}
+
+	createItem(item: IItemBase): Observable<boolean> {
+		const path: string = `${this.databaseURL}/items.json`;
+		return this.http.post(path, item).pipe(
+			mapTo(true),
+			catchError((err: HttpErrorResponse) => {
+				console.error(err);
+				return of(false);
+			}),
+		);
+	}
+
+	updateItem(id:string, item: IItemBase): Observable<boolean> {
+		const path: string = `${this.databaseURL}/items/${id}.json`;
+		return this.http.post(path, item).pipe(
+			mapTo(true),
+			catchError((err: HttpErrorResponse) => {
+				console.error(err);
+				return of(false);
+			}),
+		);
 	}
 }

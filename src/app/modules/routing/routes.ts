@@ -15,18 +15,14 @@ export const routes: Routes = [
 				path: 'dashboard',
 				loadChildren: 'src/app/modules/routing/lazy/dashboard-lazy.module#DashboardLazyModule',
 			},
-			/*{
-				path: 'detail/:id',
-				loadChildren
-			},*/
-			/*{
+			{
 				path: 'create',
-				loadChildren: '',
+				loadChildren: 'src/app/modules/routing/lazy/editor-lazy.module#EditorLazyModule',
 			},
 			{
 				path: 'edit/:id',
-				loadChildren: '',
-			}*/
+				loadChildren: 'src/app/modules/routing/lazy/editor-lazy.module#EditorLazyModule',
+			},
 		],
 	},
 	{

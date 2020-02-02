@@ -9,8 +9,8 @@
 
 	.wrapper {
 		padding: 64px 128px;
-		& > * + * { margin-top: 48px; }
+		& > * + * {
+			margin-top: 48px;
+		}
 	}
-	.actions { display: flex; }
-	.right { margin-left: auto; }
 }

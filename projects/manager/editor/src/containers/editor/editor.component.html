@@ -3,11 +3,8 @@
 	<pre *ngIf="cd(model)"></pre>
 
 	<div class="wrapper" *ngIf="model.state === 'READY'">
-		<div class="actions">
-			<filter-component (filerChange)="filterChange($event)"></filter-component>
-			<button class="right" mat-button (click)="createItem()">Create Item</button>
-		</div>
-		<list-component [items]="model.items" (openDetail)="detail($event)"></list-component>
+		<form-component #form (save)="save($event)"></form-component>
+		<button (click)="form.saveAction()">Save</button>
 	</div>
 
 	<preloader-component *ngIf="model.state === 'PENDING'">Loading...</preloader-component>

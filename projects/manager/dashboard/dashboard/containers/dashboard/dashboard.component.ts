@@ -35,4 +35,8 @@ export class DashboardComponent {
 	detail(item: Item): void {
     	this.service.detail(item);
 	}
+
+	createItem(): void {
+    	this.service.createItem();
+	}
 }
