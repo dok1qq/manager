@@ -18,6 +18,14 @@ export class Item {
 		return this.item.description;
 	}
 
+	getImageUrl(): string {
+		return this.item.imageUrl;
+	}
+
+	getFileName(): string {
+		return this.item.fileName;
+	}
+
 	getIngredients(): any[] {
 		return this.ingredients;
 	}

@@ -3,11 +3,19 @@
 	<pre *ngIf="cd(model)"></pre>
 
 	<div class="wrapper" *ngIf="model.state === 'READY'">
-		<form-component #form (save)="save($event)"></form-component>
-		<button (click)="form.saveAction()">Save</button>
+		<form-component
+			#form
+			[itemForm]="model.item"
+			(save)="save($event)"
+			(create)="create($event)">
+		</form-component>
+		<button mat-raised-button *ngIf="model.item?.id" (click)="form.saveAction()">Save</button>
+		<button mat-raised-button *ngIf="!model.item?.id" (click)="form.createAction()">Create</button>
+		<button mat-raised-button (click)="cancel()">Cancel</button>
 	</div>
 
-	<preloader-component *ngIf="model.state === 'PENDING'">Loading...</preloader-component>
+	<preloader-component *ngIf="loading$ | async"></preloader-component>
+	<preloader-component *ngIf="model.state === 'PENDING'"></preloader-component>
 
 	<replacement-message *ngIf="model.state === 'ERROR'">
 		Internal Server Error

@@ -8,11 +8,12 @@
 			[item]="model.item"
 			(openIngredient)="openIngredient($event)">
 		</content-component>
+		<button mat-raised-button (click)="edit(model.item)">Edit</button>
+		<button mat-raised-button (click)="delete(model.item)">Delete</button>
 	</div>
 
-	<preloader-component *ngIf="model.state === 'PENDING'">
-		<div style="color: black;">Loading...</div>
-	</preloader-component>
+	<preloader-component *ngIf="loading$ | async"></preloader-component>
+	<preloader-component *ngIf="model.state === 'PENDING'"></preloader-component>
 
 	<replacement-message *ngIf="model.state === 'ERROR'">
 		Internal Server Error

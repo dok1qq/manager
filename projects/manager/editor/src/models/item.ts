@@ -13,28 +13,28 @@ export class Item {
 			id: this.id,
 			name: this.name,
 			description: this.description,
-			image: this.image,
-			category: this.category,
-			condition: this.condition,
+			file: null,
+			fileName: this.fileName,
+			imageUrl: this.imageUrl,
 		};
 	}
 
-	getRequestData(form: ItemForm): IItemBase {
+	/*getRequestData(form: ItemForm): IItemBase {
 		const {
 			name,
 			description,
 			image,
-			category,
-			condition,
+			// category,
+			// condition,
 		} = form;
 		return {
 			name,
 			description,
 			image,
-			category,
-			condition,
+			// category,
+			// condition,
 		}
-	}
+	}*/
 
 	private get name(): string {
 		return this.item.name;
@@ -44,15 +44,19 @@ export class Item {
 		return this.item.description;
 	}
 
-	private get image(): string {
-		return this.item.image;
+	private get fileName(): string {
+		return this.item.fileName;
 	}
 
-	private get category(): string {
+	private get imageUrl(): string {
+		return this.item.imageUrl;
+	}
+
+	/*private get category(): string {
 		return this.item.category;
 	}
 
 	private get condition(): string {
 		return this.item.condition;
-	}
+	}*/
 }

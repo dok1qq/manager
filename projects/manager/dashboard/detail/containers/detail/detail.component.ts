@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { DetailService, Model } from '../../services/detail.service';
 import { Observable } from 'rxjs';
 import { DIALOG_INFO_DATA, DialogInfoData, DialogInfoRef } from '@manager/components/dialog-info';
+import { Item } from '@manager/core';
 
 @Component({
 	selector: 'detail-component',
@@ -23,6 +24,7 @@ export class DetailComponent {
 	) {
 		this.model$ = this.service.getModel(this.data.id);
 		this.loading$ = this.service.getLoading();
+		this.service.setClose(this.close.bind(this));
 	}
 
 	cd(model: Model): boolean {
@@ -32,6 +34,14 @@ export class DetailComponent {
 
 	close(result: boolean): void {
 		this.dialogRef.close(result);
+	}
+
+	edit(item: Item): void {
+		this.service.edit(item);
+	}
+
+	delete(item: Item): void {
+		this.service.delete(item);
 	}
 
 	refresh(): void {

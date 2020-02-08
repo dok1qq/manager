@@ -1,8 +1,8 @@
 export interface ItemForm {
 	id: string;
 	name: string;
+	file: File;
+	fileName: string;
 	description: string;
-	image: string;
-	category: string;
-	condition: string;
+	imageUrl?: string;
 }

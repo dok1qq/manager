@@ -6,6 +6,7 @@ import { Item, ModelItem, State } from '@manager/core';
 import { FirebaseApiService, IItem } from '@manager/api/firebase';
 import { DialogInfoEditorData, DialogInfoRef, DialogInfoService } from '@manager/components/dialog-info';
 import { CreateIngredientComponent } from '@manager/dashboard/create-ingredient';
+import { Router } from '@angular/router';
 
 export type Model = ModelItem<Item>;
 
@@ -15,9 +16,13 @@ export class DetailService {
 	refresh$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 	loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
+	close: (result: boolean) => void;
+	setClose(fn: (result: boolean) => any): void { this.close = fn; }
+
 	constructor(
 		private dialogService: DialogInfoService,
 		private firebase: FirebaseApiService,
+		private router: Router,
 	) {}
 
 	getLoading(): Observable<boolean> {
@@ -26,6 +31,16 @@ export class DetailService {
 
 	refresh(): void {
 		this.refresh$.next(true);
+	}
+
+	edit(item: Item): void {
+		this.close(false);
+		this.router.navigate(['/edit', item.getId()]);
+	}
+
+	delete(item: Item): void {
+		// TODO: alert here
+		this.deleteItem(item);
 	}
 
 	openIngredient(ingredient: any): void {
@@ -58,5 +73,16 @@ export class DetailService {
 		return this.firebase.getItem(id).pipe(
 			map((response: IItem) => new Item(id, response))
 		);
+	}
+
+	private deleteItem(item: Item): void {
+		this.loading$.next(true);
+		this.firebase.deleteItem(item.getId(), item.getFileName()).subscribe((result: boolean) => {
+			this.loading$.next(false);
+
+			if (result) {
+				this.close(true);
+			}
+		});
 	}
 }

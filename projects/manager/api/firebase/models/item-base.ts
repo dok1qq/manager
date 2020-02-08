@@ -1,7 +1,8 @@
 export interface IItemBase {
 	name: string;
 	description: string;
-	image: any;
-	category: any;
-	condition: any;
+	imageUrl: string;
+	fileName: string;
+	// category: any;
+	// condition: any;
 }

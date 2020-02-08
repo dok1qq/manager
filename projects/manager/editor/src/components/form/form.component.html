@@ -9,12 +9,9 @@
 		<input matInput  placeholder="Just a placeholder" formControlName="description">
 	</mat-form-field>
 
-	<mat-form-field>
-		<mat-label>Image</mat-label>
-		<input matInput  placeholder="Just a placeholder" formControlName="image">
-	</mat-form-field>
+	<input type="file" id="file" (change)="handleFileInput($event.target.files)">
 
-	<mat-form-field>
+	<!--<mat-form-field>
 		<mat-label>Condition</mat-label>
 		<input matInput  placeholder="Just a placeholder" formControlName="condition">
 	</mat-form-field>
@@ -22,5 +19,7 @@
 	<mat-form-field>
 		<mat-label>Category</mat-label>
 		<input matInput  placeholder="Just a placeholder" formControlName="category">
-	</mat-form-field>
+	</mat-form-field>-->
+
+	<img class="image" *ngIf="controlValue('imageUrl')" [src]="controlValue('imageUrl')">
 </ng-container>

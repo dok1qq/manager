@@ -37,4 +37,12 @@ export class EditorComponent {
 	save(form: ItemForm): void {
 		this.service.save(form);
 	}
+
+	create(form: ItemForm): void {
+		this.service.create(form);
+	}
+
+	cancel(): void {
+		this.service.cancel();
+	}
 }

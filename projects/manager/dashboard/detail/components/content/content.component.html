@@ -1,6 +1,6 @@
 <ng-container *ngIf="item">
 	<div class="wrapper">
-		<div class="image"></div>
+		<img class="image" [src]="item.getImageUrl()" [alt]="item.getName()">
 		<div class="info">
 			<div class="name">{{item.getName()}}</div>
 			<div class="description">{{item.getDescription()}}</div>

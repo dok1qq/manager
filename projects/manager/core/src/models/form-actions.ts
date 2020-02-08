@@ -36,7 +36,7 @@ export abstract class FormActions<T> {
 
 	controlIsInvalid(field: string): boolean {
 		const control: FormControl = this.getControl(field);
-		return control.hasError('required') && control.touched;
+		return control.touched && !!control.errors;
 	}
 
 	controlWithWarning(field: string, error: string): boolean {

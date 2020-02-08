@@ -1,5 +1,5 @@
 <ng-container *ngIf="item">
-    <div class="box"></div>
+	<img class="box" [src]="item.getImageUrl()">
     <div class="info">
 		<div class="name">{{item.getName()}}</div>
 		<!--<div class="email">{{item.email}}</div>-->
