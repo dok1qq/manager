@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { ItemShort } from '@manager/core';
+import { IItemBase } from '@manager/api/firebase';
 
 @Component({
     selector: 'list-component',
@@ -10,12 +10,12 @@ import { ItemShort } from '@manager/core';
 export class ListComponent {
 
     @Input()
-    items: ItemShort[];
+    items: IItemBase[];
 
     @Output()
-    openDetail: EventEmitter<ItemShort> = new EventEmitter<ItemShort>();
+    openDetail: EventEmitter<IItemBase> = new EventEmitter<IItemBase>();
 
-    itemId(index: number, item: ItemShort): string {
-        return item.getId();
+    itemId(index: number, item: IItemBase): string {
+        return item.id;
     }
 }

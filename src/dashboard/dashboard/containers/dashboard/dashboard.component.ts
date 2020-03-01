@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ItemShort } from '@manager/core';
 import { FilterManager } from '../../models/filter-manager';
 import { DashboardService, Model } from '../../services/dashboard.service';
+import { IItemBase } from '@manager/api/firebase';
 
 @Component({
     selector: 'dashboard-component',
@@ -32,7 +32,7 @@ export class DashboardComponent {
     	this.service.filter(value);
 	}
 
-	detail(item: ItemShort): void {
+	detail(item: IItemBase): void {
     	this.service.detail(item);
 	}
 

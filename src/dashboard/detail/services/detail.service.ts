@@ -37,7 +37,7 @@ export class DetailService extends AbstractModel<string, Model> {
 
 	sync(item: Item): void {
 		this.setLoading(true);
-		this.firebase.synchronizeItem(item.getId(), null).subscribe((result: boolean) => {
+		this.constructor.synchronizeItem(item as any).subscribe((result: boolean) => {
 			this.setLoading(false);
 
 			if (result) {

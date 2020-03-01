@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
 import { catchError, map, startWith } from 'rxjs/operators';
 import { FilterManager } from '../models/filter-manager';
-import { FirebaseApiService, IItemBase, Response } from '@manager/api/firebase';
+import { FirebaseApiService, IItemBase } from '@manager/api/firebase';
 import { DialogInfoRef, DialogInfoService } from '@manager/components/dialog-info';
-import { AbstractModel, ItemShort, ModelItems, State } from '@manager/core';
+import { AbstractModel, ModelItems, State } from '@manager/core';
 import { DetailComponent } from '@manager/dashboard/detail';
 import { Router } from '@angular/router';
 
-export type Model = ModelItems<ItemShort>;
+export type Model = ModelItems<IItemBase>;
 
 @Injectable()
 export class DashboardService extends AbstractModel<void, Model> {
@@ -27,11 +27,11 @@ export class DashboardService extends AbstractModel<void, Model> {
 		this.filter$.next(manager);
     }
 
-    detail(item: ItemShort): void {
+    detail(item: IItemBase): void {
 		const ref: DialogInfoRef<DetailComponent, boolean> = this.dialogService
 			.openInfo(DetailComponent, {
 				panelClass: 'dialog-info',
-				data: { id: item.getId() }
+				data: { id: item.id }
 			});
 		ref.afterClosed().subscribe((result: boolean) => {
 			if (result) {
@@ -49,8 +49,8 @@ export class DashboardService extends AbstractModel<void, Model> {
         	this.filter$.asObservable(),
 	        this.getItems(),
         ]).pipe(
-            map(([manager, items]: [FilterManager, ItemShort[]]) => manager.filter(items)),
-	        map((items: ItemShort[]) => ({ state: State.READY, items })),
+            map(([manager, items]: [FilterManager, IItemBase[]]) => manager.filter(items)),
+	        map((items: IItemBase[]) => ({ state: State.READY, items })),
             catchError((err: any) => {
                 console.error(err);
                 return of({ state: State.ERROR });
@@ -59,13 +59,7 @@ export class DashboardService extends AbstractModel<void, Model> {
         );
     }
 
-    private getItems(): Observable<ItemShort[]> {
-		return this.firebase.getBaseItems().pipe(
-			map((response: Response<IItemBase>) => {
-				return Object
-					.keys(response)
-					.map((key: string) => new ItemShort(key, response[key]));
-			})
-		);
+    private getItems(): Observable<IItemBase[]> {
+		return this.firebase.getBaseItems();
     }
 }

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { ItemShort } from '@manager/core';
+import { IItemBase } from '@manager/api/firebase';
 
 @Component({
     selector: 'item-component',
@@ -10,6 +10,6 @@ import { ItemShort } from '@manager/core';
 export class ItemComponent {
 
     @Input()
-    item: ItemShort;
+    item: IItemBase;
 
 }

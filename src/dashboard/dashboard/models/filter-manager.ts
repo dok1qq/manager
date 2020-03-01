@@ -1,4 +1,4 @@
-import { ItemShort } from '@manager/core';
+import { IItemBase } from '@manager/api/firebase';
 
 export class FilterManager {
 
@@ -8,14 +8,14 @@ export class FilterManager {
 		this.value = value.toLowerCase();
 	}
 
-	filter(items: ItemShort[]): ItemShort[] {
-		return items.filter((item: ItemShort) => {
+	filter(items: IItemBase[]): IItemBase[] {
+		return items.filter((item: IItemBase) => {
 			return this.filterByName(item);
 		});
 	}
 
-	private filterByName(item: ItemShort): boolean {
-		const itemName: string = item.getName().toLowerCase();
+	private filterByName(item: IItemBase): boolean {
+		const itemName: string = item.name.toLowerCase();
 		return itemName.includes(this.value)
 	}
 }

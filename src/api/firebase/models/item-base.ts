@@ -1,4 +1,5 @@
 export interface IItemBase {
+	id?: string;
 	name: string;
 	description: string;
 	imageUrl: string;
