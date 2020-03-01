@@ -1,31 +1,27 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
-import { catchError, map, startWith, switchMap } from 'rxjs/operators';
+import { catchError, map, startWith } from 'rxjs/operators';
 import { FilterManager } from '../models/filter-manager';
 import { FirebaseApiService, IGetItemsResponse } from '@manager/api/firebase';
 import { DialogInfoRef, DialogInfoService } from '@manager/components/dialog-info';
-import { ItemShort, ModelItems, State } from '@manager/core';
+import { AbstractModel, ItemShort, ModelItems, State } from '@manager/core';
 import { DetailComponent } from '@manager/dashboard/detail';
 import { Router } from '@angular/router';
 
 export type Model = ModelItems<ItemShort>;
 
 @Injectable()
-export class DashboardService {
+export class DashboardService extends AbstractModel<void, Model> {
 
-    private readonly refresh$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 	private readonly filter$: BehaviorSubject<FilterManager> = new BehaviorSubject(new FilterManager(''));
-
 
 	constructor(
 		private dialogService: DialogInfoService,
 		private firebase: FirebaseApiService,
 		private router: Router,
-	) {}
-
-    refresh(): void {
-        this.refresh$.next(true);
-    }
+	) {
+		super();
+	}
 
     filter(manager: FilterManager): void {
 		this.filter$.next(manager);
@@ -48,13 +44,7 @@ export class DashboardService {
 		this.router.navigate(['/create']);
 	}
 
-    getModel(): Observable<Model> {
-        return this.refresh$.pipe(
-            switchMap(() => this.initModel())
-        );
-    }
-
-    private initModel(): Observable<Model> {
+    protected initModel(): Observable<Model> {
         return combineLatest([
         	this.filter$.asObservable(),
 	        this.getItems(),

@@ -1,7 +1,6 @@
 import { IItemBase } from '@manager/api/firebase';
-import { Item } from './item';
 
-export class ItemShort implements Item{
+export class ItemShort {
 
 	constructor(private key: string, private item: IItemBase) {}
 

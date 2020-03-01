@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { DetailService, Model } from '../../services/detail.service';
 import { Observable } from 'rxjs';
 import { DIALOG_INFO_DATA, DialogInfoData, DialogInfoRef } from '@manager/components/dialog-info';
-import { ItemFull } from '@manager/core';
+import { Item } from '@manager/core';
 
 @Component({
 	selector: 'detail-component',
@@ -36,11 +36,11 @@ export class DetailComponent {
 		this.dialogRef.close(result);
 	}
 
-	edit(item: ItemFull): void {
+	edit(item: Item): void {
 		this.service.edit(item);
 	}
 
-	delete(item: ItemFull): void {
+	delete(item: Item): void {
 		this.service.delete(item);
 	}
 
