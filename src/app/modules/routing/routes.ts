@@ -13,15 +13,15 @@ export const routes: Routes = [
 		children: [
 			{
 				path: 'dashboard',
-				loadChildren: 'src/app/modules/routing/lazy/dashboard-lazy.module#DashboardLazyModule',
+				loadChildren: () => import('./lazy/dashboard-lazy.module').then(m => m.DashboardLazyModule),
 			},
 			{
 				path: 'create',
-				loadChildren: 'src/app/modules/routing/lazy/editor-lazy.module#EditorLazyModule',
+				loadChildren: () => import('./lazy/editor-lazy.module').then(m => m.EditorLazyModule),
 			},
 			{
 				path: 'edit/:id',
-				loadChildren: 'src/app/modules/routing/lazy/editor-lazy.module#EditorLazyModule',
+				loadChildren: () => import('./lazy/editor-lazy.module').then(m => m.EditorLazyModule),
 			},
 		],
 	},

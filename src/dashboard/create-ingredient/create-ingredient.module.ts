@@ -16,7 +16,6 @@ import { ReplacementMessageModule } from '@manager/components/replacement-messag
 	],
 	exports: [CreateIngredientComponent],
 	declarations: [CreateIngredientComponent],
-	entryComponents: [CreateIngredientComponent],
 })
 export class CreateIngredientModule {
 }

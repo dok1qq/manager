@@ -6,7 +6,8 @@ import { PreloaderModule } from '@manager/components/preloader';
 import { ReplacementMessageModule } from '@manager/components/replacement-message';
 import { RouterModule, Routes } from '@angular/router';
 import { ItemFormComponent } from './components/form/form.component';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 const routes: Routes = [{
 	path: '',

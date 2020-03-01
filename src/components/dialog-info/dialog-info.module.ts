@@ -13,6 +13,5 @@ import { DialogInfoService } from './dialog-info.service';
 	],
 	providers: [DialogInfoService],
 	declarations: [DialogInfoContainerComponent],
-	entryComponents: [DialogInfoContainerComponent],
 })
 export class DialogInfoModule {}

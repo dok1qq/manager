@@ -4,8 +4,8 @@ import { DetailComponent } from './containers/detail/detail.component';
 import { ContentComponent } from './components/content/content.component';
 import { PreloaderModule } from '@manager/components/preloader';
 import { ReplacementMessageModule } from '@manager/components/replacement-message';
-import { MatButtonModule } from '@angular/material';
 import { CreateIngredientModule } from '@manager/dashboard/create-ingredient';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
 	imports: [
@@ -27,7 +27,6 @@ import { CreateIngredientModule } from '@manager/dashboard/create-ingredient';
 		ContentComponent,
 	],
 	exports: [DetailComponent],
-	entryComponents: [DetailComponent],
 })
 export class DetailModule {
 }
