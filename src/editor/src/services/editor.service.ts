@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { AbstractModel, ModelItem, State } from '@manager/core';
 import { catchError, map, startWith } from 'rxjs/operators';
-import { FirebaseApiService, IItemBase } from '@manager/api/firebase';
+import { FirebaseApiService, FirebaseConstructorService, IItemBase } from '@manager/api/firebase';
 import { Item } from '../models/item';
 import { ItemForm } from '../models/item-form';
 import { Router } from '@angular/router';
@@ -14,6 +14,7 @@ export class EditorService extends AbstractModel<string, Model> {
 
 	constructor(
 		private firebase: FirebaseApiService,
+		private constructor: FirebaseConstructorService,
 		private router: Router,
 	) {
 		super();
@@ -66,7 +67,7 @@ export class EditorService extends AbstractModel<string, Model> {
 	}
 
 	private getItem(id: string): Observable<Item> {
-		return this.firebase.getItem(id).pipe(
+		return this.constructor.getItem(id).pipe(
 			map((response: IItemBase) => new Item(id, response)),
 		);
 	}

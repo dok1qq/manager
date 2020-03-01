@@ -1,10 +1,13 @@
 import { IItem } from '@manager/api/firebase';
+import { Ingredient } from './ingredient';
 
 export class Item {
 
-	private ingredients: any[];
+	private ingredients: Ingredient[];
 
-	constructor(private key: string, private item: IItem) {}
+	constructor(private key: string, private item: IItem) {
+		// this.ingredients = item.ingredients.map(i => new Ingredient());
+	}
 
 	getId(): string {
 		return this.key;
@@ -26,7 +29,7 @@ export class Item {
 		return this.item.fileName;
 	}
 
-	getIngredients(): any[] {
+	getIngredients(): Ingredient[] {
 		return this.ingredients;
 	}
 

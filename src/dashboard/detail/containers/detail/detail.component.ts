@@ -44,6 +44,10 @@ export class DetailComponent {
 		this.service.delete(item);
 	}
 
+	sync(item: Item): void {
+		this.service.sync(item);
+	}
+
 	refresh(): void {
 		this.service.refresh();
 	}

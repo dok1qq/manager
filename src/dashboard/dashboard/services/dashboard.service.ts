@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
 import { catchError, map, startWith } from 'rxjs/operators';
 import { FilterManager } from '../models/filter-manager';
-import { FirebaseApiService, IGetItemsResponse } from '@manager/api/firebase';
+import { FirebaseApiService, IItemBase, Response } from '@manager/api/firebase';
 import { DialogInfoRef, DialogInfoService } from '@manager/components/dialog-info';
 import { AbstractModel, ItemShort, ModelItems, State } from '@manager/core';
 import { DetailComponent } from '@manager/dashboard/detail';
@@ -60,8 +60,8 @@ export class DashboardService extends AbstractModel<void, Model> {
     }
 
     private getItems(): Observable<ItemShort[]> {
-		return this.firebase.getItems().pipe(
-			map((response: IGetItemsResponse) => {
+		return this.firebase.getBaseItems().pipe(
+			map((response: Response<IItemBase>) => {
 				return Object
 					.keys(response)
 					.map((key: string) => new ItemShort(key, response[key]));

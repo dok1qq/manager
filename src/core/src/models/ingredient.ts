@@ -1,4 +1,10 @@
+import { IIngredient } from '@manager/api/firebase/models/ingredient';
+
 export class Ingredient {
 
-	constructor(key: string, item: any) {}
+	constructor(private key: string, private ingredient: IIngredient) {}
+
+	getId(): string {
+		return this.key;
+	}
 }

@@ -10,6 +10,7 @@
 		</content-component>
 		<button mat-raised-button (click)="edit(model.item)">Edit</button>
 		<button mat-raised-button (click)="delete(model.item)">Delete</button>
+		<button mat-button (click)="sync(model.item)">Save</button>
 	</div>
 
 	<preloader-component *ngIf="loading$ | async"></preloader-component>

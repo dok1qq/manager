@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, first, map, startWith } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AbstractModel, Item, ModelItem, State } from '@manager/core';
-import { FirebaseApiService, IItem } from '@manager/api/firebase';
+import { FirebaseApiService, FirebaseConstructorService, IItem } from '@manager/api/firebase';
 import { DialogInfoEditorData, DialogInfoRef, DialogInfoService } from '@manager/components/dialog-info';
 import { CreateIngredientComponent } from '@manager/dashboard/create-ingredient';
 import { Router } from '@angular/router';
@@ -19,6 +19,7 @@ export class DetailService extends AbstractModel<string, Model> {
 	constructor(
 		private dialogService: DialogInfoService,
 		private firebase: FirebaseApiService,
+		private constructor: FirebaseConstructorService,
 		private router: Router,
 	) {
 		super();
@@ -32,6 +33,17 @@ export class DetailService extends AbstractModel<string, Model> {
 	delete(item: Item): void {
 		// TODO: alert here
 		this.deleteItem(item);
+	}
+
+	sync(item: Item): void {
+		this.setLoading(true);
+		this.firebase.synchronizeItem(item.getId(), null).subscribe((result: boolean) => {
+			this.setLoading(false);
+
+			if (result) {
+				this.close(true);
+			}
+		});
 	}
 
 	openIngredient(ingredient: any): void {
@@ -55,7 +67,7 @@ export class DetailService extends AbstractModel<string, Model> {
 	}
 
 	private getItem(id: string): Observable<Item> {
-		return this.firebase.getItem(id).pipe(
+		return this.constructor.getItem(id).pipe(
 			map((response: IItem) => new Item(id, response))
 		);
 	}
