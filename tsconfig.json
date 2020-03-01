@@ -20,19 +20,19 @@
 		],
 		"paths": {
 			"@manager/core": [
-				"./dist/manager/core"
+				"./src/core"
 			],
 			"@manager/api/*": [
-				"./dist/manager/api/*"
+				"./src/api/*"
 			],
 			"@manager/components/*": [
-				"./dist/manager/components/*"
+				"./src/components/*"
 			],
 			"@manager/dashboard/*": [
-				"./dist/manager/dashboard/*"
+				"./src/dashboard/*"
 			],
 			"@manager/editor": [
-				"./dist/manager/editor"
+				"./src/editor"
 			]
 		}
 	},
