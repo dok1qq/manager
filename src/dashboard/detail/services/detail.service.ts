@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, first, map, startWith } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AbstractModel, Item, ModelItem, State } from '@manager/core';
-import { FirebaseApiService, FirebaseConstructorService, IItem } from '@manager/api/firebase';
+import { FirebaseConstructorService, IItem } from '@manager/api/firebase';
 import { DialogInfoEditorData, DialogInfoRef, DialogInfoService } from '@manager/components/dialog-info';
 import { CreateIngredientComponent } from '@manager/dashboard/create-ingredient';
 import { Router } from '@angular/router';
@@ -18,7 +18,6 @@ export class DetailService extends AbstractModel<string, Model> {
 
 	constructor(
 		private dialogService: DialogInfoService,
-		private firebase: FirebaseApiService,
 		private constructor: FirebaseConstructorService,
 		private router: Router,
 	) {
@@ -74,7 +73,7 @@ export class DetailService extends AbstractModel<string, Model> {
 
 	private deleteItem(item: Item): void {
 		this.setLoading(true);
-		this.firebase.deleteItem(item.getId(), item.getFileName()).subscribe((result: boolean) => {
+		this.constructor.deleteItemImpl(item.getId(), item.getFileName()).subscribe((result: boolean) => {
 			this.setLoading(false);
 
 			if (result) {

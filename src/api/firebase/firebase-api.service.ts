@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { IItemBase } from './models/item-base';
-import { catchError, first, map, mapTo, switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
-import { fromPromise } from 'rxjs/internal-compatibility';
 import { IIngredientBase } from './models/ingredient-base';
 import { IItemIngredientBase } from './models/item-ingredient-base';
 import { CreateResponse, Response } from './models/response';
@@ -82,6 +81,11 @@ export class FirebaseApiService {
 		);
 	}
 
+	deleteItem(id: string): Observable<unknown> {
+		const path: string = `${this.itemsURL}/${id}.json`;
+		return this.http.delete(path);
+	}
+
 	deleteIngredient(id: string): Observable<unknown> {
 		const path: string = `${this.ingredientsURL}/${id}.json`;
 		return this.http.delete(path);
@@ -90,6 +94,11 @@ export class FirebaseApiService {
 	deleteItemIngredient(id: string): Observable<unknown> {
 		const path: string = `${this.itemIngredientURL}/${id}.json`;
 		return this.http.delete(path);
+	}
+
+	createItem(item: IItemBase): Observable<CreateResponse> {
+		const path: string = `${this.itemsURL}.json`;
+		return this.http.post<CreateResponse>(path, item);
 	}
 
 	createIngredient(ingredient: IIngredientBase): Observable<CreateResponse> {
@@ -102,91 +111,22 @@ export class FirebaseApiService {
 		return this.http.post<CreateResponse>(path, itemIngredient);
 	}
 
-	// TODO: refactor
-	createItem(item: IItemBase, file: File): Observable<boolean> {
-		const path: string = `${this.databaseURL}/items.json`;
-		const ref: AngularFireStorageReference = this.storage.ref(`items/${item.fileName}`);
-		const task: AngularFireUploadTask = ref.put(file);
-
-		// Loading image
-		const load: Promise<boolean> = task
-			.then(() => true)
-			.catch((err: any) => {
-				console.error('Load error: ', err);
-				return false;
-			});
-
-		// If error occurred try to delete image
-		const deleteImage$: Observable<boolean> = ref.delete().pipe(
-			mapTo(false),
-			catchError((err: any) => {
-				console.error('Delete image error: ', err);
-				return of(false);
-			})
-		);
-
-		// Save item in database
-		const saveItem$: Observable<boolean> = this.http.post(path, item).pipe(
-			mapTo(true),
-			catchError((err: HttpErrorResponse) => {
-				console.error(err);
-				return of(false);
-			}),
-		);
-
-		return fromPromise(load).pipe(
-			switchMap((result: boolean) =>
-				// TODO: if error show overlay message
-				result
-					? ref.getDownloadURL()
-					: throwError(false)
-			),
-			switchMap((imageUrl: string) => {
-				item.imageUrl = imageUrl;
-				return saveItem$;
-			}),
-			switchMap((result: boolean) =>
-				result ? of(result) : deleteImage$
-			),
-			catchError(() => of(false)),
-			first(),
-		);
-	}
-
-	// TODO: refactor
-	deleteItem(id: string, fileName: string): Observable<boolean> {
-		const path: string = `${this.databaseURL}/items/${id}.json`;
+	saveImage(fileName: string, file: File): AngularFireUploadTask {
 		const ref: AngularFireStorageReference = this.storage.ref(`items/${fileName}`);
-
-		const deleteImage$: Observable<boolean> = ref.delete().pipe(
-			mapTo(true),
-			catchError((err: any) => {
-				// TODO: we loose consistency here
-				console.error('Delete image error: ', err);
-				return of(false);
-			})
-		);
-
-		return this.http.delete(path).pipe(
-			switchMap(() => deleteImage$),
-			mapTo(true),
-			catchError((err: HttpErrorResponse) => {
-				console.error(err);
-				return of(false);
-			}),
-		);
+		return ref.put(file);
 	}
 
-	// TODO: update image
-	// TODO: refactor
-	saveItem(id: string, item: IItemBase): Observable<boolean> {
-		const path: string = `${this.databaseURL}/items/${id}.json`;
-		return this.http.patch(path, item).pipe(
-			mapTo(true),
-			catchError((err: HttpErrorResponse) => {
-				console.error(err);
-				return of(false);
-			}),
-		);
+	deleteImage(fileName: string): Observable<unknown> {
+		const ref: AngularFireStorageReference = this.storage.ref(`items/${fileName}`);
+		return ref.delete();
+	}
+
+	updateItem(id: string, item: IItemBase): Observable<unknown> {
+		const path: string = `${this.itemsURL}/${id}.json`;
+		return this.http.patch(path, item);
+	}
+
+	getStorageRef(fileName: string): AngularFireStorageReference {
+		return this.storage.ref(`items/${fileName}`);
 	}
 }

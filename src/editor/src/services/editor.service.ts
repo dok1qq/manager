@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { AbstractModel, ModelItem, State } from '@manager/core';
 import { catchError, map, startWith } from 'rxjs/operators';
-import { FirebaseApiService, FirebaseConstructorService, IItemBase } from '@manager/api/firebase';
+import { FirebaseConstructorService, IItemBase } from '@manager/api/firebase';
 import { Item } from '../models/item';
 import { ItemForm } from '../models/item-form';
 import { Router } from '@angular/router';
@@ -13,7 +13,6 @@ export type Model = ModelItem<ItemForm>;
 export class EditorService extends AbstractModel<string, Model> {
 
 	constructor(
-		private firebase: FirebaseApiService,
 		private constructor: FirebaseConstructorService,
 		private router: Router,
 	) {
@@ -26,10 +25,10 @@ export class EditorService extends AbstractModel<string, Model> {
 
 	save(form: ItemForm): void {
 		const { name, description, fileName, file, imageUrl } = form;
-		const params: IItemBase = { name, description, fileName, imageUrl };
+		const params: IItemBase = { name, description, fileName, imageUrl, id: form.id };
 
 		this.setLoading(true);
-		this.firebase.saveItem(form.id, params).subscribe((result: boolean) => {
+		this.constructor.saveItem(params, file).subscribe((result: boolean) => {
 			this.setLoading(false);
 
 			if (result) {
@@ -43,7 +42,7 @@ export class EditorService extends AbstractModel<string, Model> {
 		const params: IItemBase = { name, description, fileName, imageUrl: null };
 
 		this.setLoading(true);
-		this.firebase.createItem(params, file).subscribe((result: boolean) => {
+		this.constructor.saveItem(params, file).subscribe((result: boolean) => {
 			this.setLoading(false);
 			if (result) {
 				this.router.navigate(['dashboard']);
